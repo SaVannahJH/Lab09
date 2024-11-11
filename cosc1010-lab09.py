@@ -111,7 +111,7 @@ class Pizza:
         self.sauce = sauce
         self.toppings = ['cheese']
 
-    # A Function to get the size of the pizza
+    # A Method to get the size of the pizza
     def get_size(self):
         return self.size
 
@@ -121,23 +121,23 @@ class Pizza:
             return 10  
         return size
 
-    # A Function to get the sauce of the pizza
+    # A method to get the sauce of the pizza
     def get_sauce(self):
         return self.sauce
 
-    # Function to set the sauce
+    # Function/method to set the sauce
     def set_sauce(self, sauce):
         self.sauce = sauce
 
-    # A Function to get the list of toppings
+    # A Function/method to get the list of toppings
     def get_toppings(self):
         return self.toppings
 
-    # A Funciton to add toppings to the pizza
+    # A Funciton/method to add toppings to the pizza
     def add_toppings(self, *new_toppings):
         self.toppings.extend(new_toppings)
 
-    # Function to get the number of toppings
+    # A Method to get the number of toppings
     def get_amount_of_toppings(self):
         return len(self.toppings)
 
@@ -180,16 +180,16 @@ class Pizzeria:
         # Print the order details
         print(f"\nYou ordered a {pizza.get_size()}\" pizza with {pizza.get_sauce()} sauce and the following toppings:")
         for topping in pizza.get_toppings():
-            print(f"                                                                  {topping}")
+            print(f"{topping}")
 
         # Call the get_receipt method to show the receipt
         self.get_receipt(pizza)
 
-    # Function to get the price of a pizza
+    # Function/method to get the price of a pizza
     def get_price(self, pizza):
         return (pizza.get_size() * self.price_per_inch) + (pizza.get_amount_of_toppings() * self.price_per_topping)
 
-    # A Function to produce the receipt for a pizza and calucate the price
+    # A Function/method to produce the receipt for a pizza and calucate the price
     def get_receipt(self, pizza):
         size_price = pizza.get_size() * self.price_per_inch
         topping_price = pizza.get_amount_of_toppings() * self.price_per_topping
@@ -200,7 +200,7 @@ class Pizzeria:
         print(f"You had {pizza.get_amount_of_toppings()} topping(s) for ${topping_price:.2f}")
         print(f"Your total price is ${total_price:.2f}\n")
 
-    # A Function to get the total number of orders
+    # A Function/method to get the total number of orders
     def get_number_of_orders(self):
         return self.orders
 
