@@ -1,8 +1,8 @@
-# Your Name Here
+# SaVannah Hussey
 # UWYO COSC 1010
-# Submission Date
-# Lab XX
-# Lab Section:
+# 11/11/2024
+# Lab 09
+# Lab Section:14
 # Sources, people worked with, help given to:
 # Your
 # Comments
@@ -103,3 +103,126 @@ Your total price is $12.9
 
 Would you like to place an order? exit to exit
 """
+
+class Pizza:
+    def __init__(self, size, sauce='red'):
+        # Set the size (with a check to ensure it's greater than 10)
+        self.size = self.set_size(size)
+        # Set the sauce; the default is red
+        self.sauce = sauce
+        # Set toppings with cheese as the default
+        self.toppings = ['cheese']
+
+    # Method to get the size of the pizza
+    def get_size(self):
+        return self.size
+
+    # Method to set the size, ensuring it's greater than 10
+    def set_size(self, size):
+        if size < 10:
+            return 10  # default to 10" if size is less than 10
+        return size
+
+    # Method to get the sauce of the pizza
+    def get_sauce(self):
+        return self.sauce
+
+    # Method to set the sauce
+    def set_sauce(self, sauce):
+        self.sauce = sauce
+
+    # Method to get the list of toppings
+    def get_toppings(self):
+        return self.toppings
+
+    # Method to add toppings to the pizza
+    def add_toppings(self, *new_toppings):
+        self.toppings.extend(new_toppings)
+
+    # Method to get the number of toppings
+    def get_amount_of_toppings(self):
+        return len(self.toppings)
+
+
+class Pizzeria:
+    # Static values for pricing
+    price_per_topping = 0.30
+    price_per_inch = 0.60
+
+    def __init__(self):
+        self.orders = 0  # Initial number of orders
+        self.pizzas = []  # List to store all pizzas
+
+    # Method to place an order
+    def place_order(self):
+        self.orders += 1  # Increment order count
+
+        # Prompt the user for pizza details
+        size = int(input("Please enter the size of pizza, as a whole number. The smallest size is 10\n"))
+        sauce = input("What kind of sauce would you like?\nLeave blank for red sauce\n").strip()
+
+        # Default sauce is 'red' if nothing is entered
+        if not sauce:
+            sauce = 'red'
+
+        # Create a new pizza with the given details
+        pizza = Pizza(size, sauce)
+
+        # Add toppings to the pizza
+        print("Please enter the toppings you would like, leave blank when done")
+        while True:
+            topping = input().strip()
+            if not topping:
+                break
+            pizza.add_toppings(topping)
+
+        # Store the pizza in the list
+        self.pizzas.append(pizza)
+
+        # Print the order details
+        print(f"\nYou ordered a {pizza.get_size()}\" pizza with {pizza.get_sauce()} sauce and the following toppings:")
+        for topping in pizza.get_toppings():
+            print(f"                                                                  {topping}")
+
+        # Call the get_receipt method to show the receipt
+        self.get_receipt(pizza)
+
+    # Method to get the price of a pizza
+    def get_price(self, pizza):
+        return (pizza.get_size() * self.price_per_inch) + (pizza.get_amount_of_toppings() * self.price_per_topping)
+
+    # Method to generate the receipt for a pizza
+    def get_receipt(self, pizza):
+        # Calculate the price components
+        size_price = pizza.get_size() * self.price_per_inch
+        topping_price = pizza.get_amount_of_toppings() * self.price_per_topping
+        total_price = size_price + topping_price
+
+        # Print the receipt
+        print(f"\nYou ordered a {pizza.get_size()}\" pizza for ${size_price:.2f}")
+        print(f"You had {pizza.get_amount_of_toppings()} topping(s) for ${topping_price:.2f}")
+        print(f"Your total price is ${total_price:.2f}\n")
+
+    # Method to get the total number of orders
+    def get_number_of_orders(self):
+        return self.orders
+
+
+# Main program
+def main():
+    pizzeria = Pizzeria()
+
+    while True:
+        # Ask if the user wants to place an order
+        user_input = input("Would you like to place an order? exit to exit\n").strip().lower()
+        if user_input == "exit":
+            break
+        elif user_input == "yes":
+            pizzeria.place_order()
+
+    # After the loop ends, print the total number of orders
+    print(f"Total orders placed: {pizzeria.get_number_of_orders()}")
+
+# Run the main program
+if __name__ == "__main__":
+    main()
