@@ -5,9 +5,12 @@
 # Lab Section:14
 # Sources, people worked with, help given to: Textbook Chapters:7, 8, 9,
 # COSC1010_lec12-Classes.pptx.pdf, COSC1010_lec11-Functions.pptx.pdf, COSC1010_lec10-UserInputWhileLoops.pptx.pdf
-# Online tutor, ChatGPT "" 11/09/2024
-# 
-# 
+# Online tutor, 
+# ChatGPT 
+# "ideas and tips to to create a function/ method that keep track of the number of orders 
+# a user makes (no code)" 11/09/2024
+# https://www.geeksforgeeks.org/python-not-keyword/
+#
 
 # Classes
 # For this assignment, you will be creating two classes:
